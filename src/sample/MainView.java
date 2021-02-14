@@ -8,18 +8,22 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class MainView extends VBox {
 
     private Canvas canvas;
     public ArrayList<Integer> listOfIntegers;
+    public HashMap<Integer, Color> listOfColors;
     GraphicsContext context;
 
     public MainView(){
         listOfIntegers = new ArrayList<>();
+        listOfColors = new HashMap<>();
 
         for(int i = 1; i <= 100; i++){
             listOfIntegers.add(i);
+            listOfColors.put(i, Color.color(Math.random(), Math.random(), Math.random()));
         }
 
         Collections.shuffle(listOfIntegers);
@@ -56,7 +60,7 @@ public class MainView extends VBox {
     public void drawSquare(){
         int counter = 0;
         for (Integer number: listOfIntegers) {
-            context.setFill(Color.BLACK);
+            context.setFill(listOfColors.get(number));
             context.fillRect(counter, canvas.getHeight()-(number*10), 10, number*10);
             context.setFill(Color.WHITE);
             context.fillRect(counter, 0, 1, canvas.getHeight());
