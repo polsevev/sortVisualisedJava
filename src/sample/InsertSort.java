@@ -3,19 +3,15 @@ package sample;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Simulation implements Runnable {
+public class InsertSort implements Runnable {
 
 
     private final MainView mainView;
-    public Simulation(MainView mainView){
+    public InsertSort(MainView mainView){
         this.mainView = mainView;
     }
 
-    public void runSimulation() {
-        Thread t = new Thread(this);
-        t.start();
 
-    }
 
     public void run() {
         try {
@@ -35,7 +31,7 @@ public class Simulation implements Runnable {
                 a.set(counter + 1, a.get(counter));
 
                 counter -= 1;
-                this.updateCanvas(a);
+                mainView.setListOfIntegers(a);
                 Thread.sleep(10);
 
             }
@@ -46,7 +42,4 @@ public class Simulation implements Runnable {
         return a;
     }
 
-    public void updateCanvas(ArrayList<Integer> listOfInts){
-        mainView.setListOfIntegers(listOfInts);
-    }
 }

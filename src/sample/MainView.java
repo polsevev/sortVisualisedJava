@@ -8,36 +8,52 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class MainView extends VBox {
 
     private Canvas canvas;
-    private Button button;
     public ArrayList<Integer> listOfIntegers;
     GraphicsContext context;
 
     public MainView(){
         listOfIntegers = new ArrayList<>();
 
-        for(int i = 1; i <= 50; i++){
+        for(int i = 1; i <= 100; i++){
             listOfIntegers.add(i);
         }
+
         Collections.shuffle(listOfIntegers);
-        button = new Button();
-        this.button.setOnAction(actionEvent -> {
-            Simulation sim = new Simulation(this);
-            sim.runSimulation();
+
+        Button button = new Button();
+        button.setText("Run InsertSort");
+        button.setOnAction(actionEvent -> {
+            InsertSort ins = new InsertSort(this);
+            Thread t = new Thread(ins);
+            t.start();
         });
-        canvas = new Canvas(500, 500);
+
+        Button button1 = new Button();
+        button1.setText("Run QuickSort");
+        button1.setOnAction(actionEvent -> {
+            QuickSort quickSort = new QuickSort(this);
+            Thread t = new Thread(quickSort);
+            t.start();
+        });
+
+        Button button2 = new Button();
+        button2.setText("Reset");
+        button2.setOnAction(actionEvent -> {
+            Collections.shuffle(listOfIntegers);
+            clearCanvas();
+            drawSquare();
+        });
+
+        canvas = new Canvas(1000, 1000);
         context = canvas.getGraphicsContext2D();
-        this.getChildren().addAll(canvas, button);
+        this.getChildren().addAll(canvas, button, button1, button2);
     }
 
     public void drawSquare(){
-
-
-        System.out.println(listOfIntegers.toString());
         int counter = 0;
         for (Integer number: listOfIntegers) {
             context.setFill(Color.BLACK);
@@ -60,4 +76,6 @@ public class MainView extends VBox {
         clearCanvas();
         drawSquare();
     }
+
+
 }

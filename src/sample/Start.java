@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 
 
-public class Graphics extends Application {
+public class Start extends Application {
 
     Canvas canvas;
 
@@ -21,7 +21,7 @@ public class Graphics extends Application {
     @Override
     public void start(Stage primaryStage){
         MainView mainView = new MainView();
-        Scene scene = new Scene(mainView, 500, 550);
+        Scene scene = new Scene(mainView, 1000, 1200);
         primaryStage.setScene(scene);
         primaryStage.show();
 
