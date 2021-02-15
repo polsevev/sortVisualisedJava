@@ -33,7 +33,7 @@ public class MainView extends VBox {
 
         for(int i = 1; i <= 100; i++){
             listOfIntegers.add(i);
-            listOfColors.put(i, Color.color(Math.random(), Math.random(), ((float)i)/100));
+            listOfColors.put(i, Color.color(Math.random(), Math.random(), ((float)i)/200));
         }
 
         Collections.shuffle(listOfIntegers);
@@ -78,7 +78,7 @@ public class MainView extends VBox {
                 speed = Integer.parseInt(theIn);
             }
         });
-        canvas = new Canvas(1000, 1000);
+        canvas = new Canvas(1000, 500);
         context = canvas.getGraphicsContext2D();
         this.getChildren().addAll(canvas, button, button1, button2, arrayAccessesText, textField, button3);
     }
@@ -88,7 +88,7 @@ public class MainView extends VBox {
         int counter = 0;
         for (Integer number: listOfIntegers) {
             context.setFill(listOfColors.get(number));
-            context.fillRect(counter, canvas.getHeight()-(number*10), 10, number*10);
+            context.fillRect(counter, canvas.getHeight()-(number*5), 10, number*10);
             context.setFill(Color.WHITE);
             context.fillRect(counter, 0, 1, canvas.getHeight());
             counter +=10;

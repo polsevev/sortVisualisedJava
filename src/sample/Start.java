@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 
 public class Start extends Application {
 
-    Canvas canvas;
-
 
     @Override
     public void start(Stage primaryStage){
