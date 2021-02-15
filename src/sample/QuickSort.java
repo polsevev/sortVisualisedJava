@@ -17,9 +17,6 @@ public class QuickSort implements Runnable{
         }
     }
 
-
-
-
     private void quickSort(ArrayList<Integer> a, int low, int high) throws InterruptedException {
         if(low >= high){
             return;
@@ -45,7 +42,7 @@ public class QuickSort implements Runnable{
                 low++;
                 high--;
                 mainView.setListOfIntegers(a);
-                Thread.sleep(100);
+                Thread.sleep(10);
             }
 
         }

@@ -28,29 +28,36 @@ public class MainView extends VBox {
 
         Collections.shuffle(listOfIntegers);
 
+        QuickSort quickSort = new QuickSort(this);
+        Thread t = new Thread(quickSort);
+
+        InsertSort ins = new InsertSort(this);
+        Thread t1 = new Thread(ins);
+
         Button button = new Button();
         button.setText("Run InsertSort");
         button.setOnAction(actionEvent -> {
-            InsertSort ins = new InsertSort(this);
-            Thread t = new Thread(ins);
-            t.start();
+            t1.start();
         });
 
         Button button1 = new Button();
         button1.setText("Run QuickSort");
         button1.setOnAction(actionEvent -> {
-            QuickSort quickSort = new QuickSort(this);
-            Thread t = new Thread(quickSort);
             t.start();
         });
 
         Button button2 = new Button();
         button2.setText("Reset");
         button2.setOnAction(actionEvent -> {
+            if(t1.isAlive())
+                t1.stop();
+            else if(t.isAlive())
+                t.stop();
             Collections.shuffle(listOfIntegers);
             clearCanvas();
             drawSquare();
         });
+
 
         canvas = new Canvas(1000, 1000);
         context = canvas.getGraphicsContext2D();
