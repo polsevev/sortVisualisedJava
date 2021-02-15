@@ -22,6 +22,7 @@ public class QuickSort implements Runnable{
             return;
         }
         int p = a.get(new Random().nextInt(high));
+        mainView.incArrayAccess(1);
         int index = partition(a, low, high, p);
         quickSort(a, low, index-1);
         quickSort(a, index, high);
@@ -30,19 +31,22 @@ public class QuickSort implements Runnable{
     private Integer partition(ArrayList<Integer> a, int low, int high, int p) throws InterruptedException {
         while(low <= high){
             while(a.get(low) < p){
+                mainView.incArrayAccess(1);
                 low++;
             }
             while(a.get(high) > p){
+                mainView.incArrayAccess(1);
                 high--;
             }
             if (low <= high) {
                 int temp = a.get(high);
                 a.set(high, a.get(low));
                 a.set(low, temp);
+                mainView.incArrayAccess(4);
                 low++;
                 high--;
                 mainView.setListOfIntegers(a);
-                Thread.sleep(10);
+                Thread.sleep(mainView.getSpeed());
             }
 
         }

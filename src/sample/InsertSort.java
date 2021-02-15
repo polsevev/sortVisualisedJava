@@ -23,16 +23,20 @@ public class InsertSort implements Runnable {
         int n = a.size();
         for (int i = 1; i < n; i++) {
             int currentNumber = a.get(i);
+            mainView.incArrayAccess(1);
             int counter = i - 1;
             while(counter >= 0 && a.get(counter) > currentNumber){
+
                 a.set(counter + 1, a.get(counter));
 
+                mainView.incArrayAccess(3);
                 counter -= 1;
                 mainView.setListOfIntegers(a);
-                Thread.sleep(10);
+                Thread.sleep(mainView.getSpeed());
 
             }
             a.set(counter+1, currentNumber);
+            mainView.incArrayAccess(1);
 
 
         }
