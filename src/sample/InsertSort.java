@@ -10,8 +10,6 @@ public class InsertSort implements Runnable {
         this.mainView = mainView;
     }
 
-
-
     public void run() {
         try {
             insertSort(mainView.listOfIntegers);
@@ -21,8 +19,8 @@ public class InsertSort implements Runnable {
     }
 
 
-    public ArrayList<Integer> insertSort(ArrayList<Integer> a) throws InterruptedException {
-        Integer n = a.size();
+    public void insertSort(ArrayList<Integer> a) throws InterruptedException {
+        int n = a.size();
         for (int i = 1; i < n; i++) {
             int currentNumber = a.get(i);
             int counter = i - 1;
@@ -38,7 +36,6 @@ public class InsertSort implements Runnable {
 
 
         }
-        return a;
     }
 
 }
