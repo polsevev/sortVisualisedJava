@@ -24,6 +24,7 @@ public class InsertSort implements Runnable {
             System.out.println("Failure");
         }
         mainView.drawSquare();
+        mainView.updateArrayAccesses();
     }
 
 

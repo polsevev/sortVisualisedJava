@@ -18,6 +18,7 @@ public class QuickSort implements Runnable{
             e.printStackTrace();
         }
         mainView.drawSquare();
+        mainView.updateArrayAccesses();
     }
 
     private void quickSort(ArrayList<Integer> a, int low, int high) throws InterruptedException {

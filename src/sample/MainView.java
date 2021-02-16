@@ -4,11 +4,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,7 +24,6 @@ public class MainView extends VBox {
     private Double canvasHeight;
 
     public MainView(){
-
         listOfIntegers = new ArrayList<>();
         listOfColors = new HashMap<>();
         arrayAccessesText = new Text();
@@ -97,7 +94,6 @@ public class MainView extends VBox {
     }
 
     public void drawSquare(){
-        arrayAccessesText.setText("Array accesses: " + arrayAccesses.toString());
         int counter = 0;
         for (Integer number: listOfIntegers) {
             context.setFill(listOfColors.get(number));
@@ -107,8 +103,6 @@ public class MainView extends VBox {
     }
 
     public void drawPillars(ArrayList<Integer> a ){
-
-        arrayAccessesText.setText("Array accesses: " + arrayAccesses.toString());
         int counter = 0;
         for (Integer number: a) {
             context.setFill(listOfColors.get(number));
@@ -157,6 +151,10 @@ public class MainView extends VBox {
             a.add(i);
         }
         return a;
+    }
+
+    public void updateArrayAccesses(){
+        arrayAccessesText.setText("Array accesses: " + arrayAccesses);
     }
 
 }
