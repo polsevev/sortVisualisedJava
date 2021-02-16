@@ -6,8 +6,10 @@ public class InsertSort implements Runnable {
 
 
     private final MainView mainView;
+    private final int speed;
     public InsertSort(MainView mainView){
         this.mainView = mainView;
+        this.speed = mainView.getSpeed();
     }
 
     public void run() {
@@ -21,6 +23,7 @@ public class InsertSort implements Runnable {
         }else{
             System.out.println("Failure");
         }
+        mainView.drawSquare();
     }
 
 
@@ -37,7 +40,8 @@ public class InsertSort implements Runnable {
                 mainView.incArrayAccess(3);
                 counter -= 1;
                 mainView.setListOfIntegers(a);
-                int speed = mainView.getSpeed();
+                mainView.clearCanvas();
+                mainView.drawPillars(a);
                 Thread.sleep(speed);
 
             }
@@ -47,6 +51,7 @@ public class InsertSort implements Runnable {
 
         }
         mainView.setListOfIntegers(a);
+        mainView.drawSquare();
     }
 
 }

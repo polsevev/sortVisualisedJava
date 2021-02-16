@@ -6,8 +6,10 @@ import java.util.Random;
 public class QuickSort implements Runnable{
 
     private final MainView mainView;
+    private final int speed;
     public QuickSort(MainView mw){
         this.mainView = mw;
+        this.speed = mainView.getSpeed();
     }
     public void run(){
         try {
@@ -15,6 +17,7 @@ public class QuickSort implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        mainView.drawSquare();
     }
 
     private void quickSort(ArrayList<Integer> a, int low, int high) throws InterruptedException {
@@ -46,7 +49,8 @@ public class QuickSort implements Runnable{
                 low++;
                 high--;
                 mainView.setListOfIntegers(a);
-                int speed = mainView.getSpeed();
+                mainView.clearCanvas();
+                mainView.drawPillars(a);
                 Thread.sleep(speed);
             }
 

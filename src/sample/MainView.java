@@ -23,8 +23,10 @@ public class MainView extends VBox {
     public Text arrayAccessesText;
     Thread currentlyRunning;
     private int speed = 10;
+    private Double canvasHeight;
 
     public MainView(){
+
         listOfIntegers = new ArrayList<>();
         listOfColors = new HashMap<>();
         arrayAccessesText = new Text();
@@ -33,7 +35,7 @@ public class MainView extends VBox {
 
         for(int i = 1; i <= 100; i++){
             listOfIntegers.add(i);
-            listOfColors.put(i, Color.color(Math.random(), Math.random(), ((float)i)/200));
+            listOfColors.put(i, Color.rgb(0, i, i));
         }
 
         Collections.shuffle(listOfIntegers);
@@ -55,6 +57,15 @@ public class MainView extends VBox {
             currentlyRunning = t;
             t.start();
         });
+        Button button4 = new Button();
+        button4.setText("Run Bogosort");
+        button4.setOnAction(actionEvent -> {
+            BogoSort bogo = new BogoSort(this);
+            Thread t2 = new Thread(bogo);
+            currentlyRunning = t2;
+            t2.start();
+        });
+
 
         Button button2 = new Button();
         button2.setText("Reset");
@@ -63,6 +74,7 @@ public class MainView extends VBox {
                 currentlyRunning.stop();
             }
             arrayAccesses = 0;
+            listOfIntegers = makeNewList();
             Collections.shuffle(listOfIntegers);
             clearCanvas();
             drawSquare();
@@ -80,18 +92,27 @@ public class MainView extends VBox {
         });
         canvas = new Canvas(1000, 500);
         context = canvas.getGraphicsContext2D();
-        this.getChildren().addAll(canvas, button, button1, button2, arrayAccessesText, textField, button3);
+        canvasHeight = canvas.getHeight();
+        this.getChildren().addAll(canvas, button, button1, button4, button2, arrayAccessesText, textField, button3);
     }
 
     public void drawSquare(){
-        clearCanvas();
         arrayAccessesText.setText("Array accesses: " + arrayAccesses.toString());
         int counter = 0;
         for (Integer number: listOfIntegers) {
             context.setFill(listOfColors.get(number));
-            context.fillRect(counter, canvas.getHeight()-(number*5), 10, number*10);
-            context.setFill(Color.WHITE);
-            context.fillRect(counter, 0, 1, canvas.getHeight());
+            context.fillRect(counter, canvasHeight-(number*5), 10, number*10);
+            counter +=10;
+        }
+    }
+
+    public void drawPillars(ArrayList<Integer> a ){
+
+        arrayAccessesText.setText("Array accesses: " + arrayAccesses.toString());
+        int counter = 0;
+        for (Integer number: a) {
+            context.setFill(listOfColors.get(number));
+            context.fillRect(counter, canvasHeight-(number*5), 10, number*10);
             counter +=10;
         }
     }
@@ -106,7 +127,6 @@ public class MainView extends VBox {
     public void setListOfIntegers(ArrayList<Integer> listOfInts){
         listOfIntegers = listOfInts;
 
-        drawSquare();
     }
 
     public void incArrayAccess(int number){
@@ -114,6 +134,9 @@ public class MainView extends VBox {
     }
 
     public int getSpeed(){
+        if(this.speed < 10){
+            return 10;
+        }
         return this.speed;
     }
 
@@ -123,8 +146,17 @@ public class MainView extends VBox {
             if(number <= lastNumber){
                 return false;
             }
+            lastNumber = number;
         }
         return true;
+    }
+
+    public ArrayList<Integer> makeNewList(){
+        ArrayList<Integer> a = new ArrayList<>();
+        for (int i = 1; i <= 100; i++) {
+            a.add(i);
+        }
+        return a;
     }
 
 }
