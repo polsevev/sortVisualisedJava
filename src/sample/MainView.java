@@ -84,6 +84,7 @@ public class MainView extends VBox {
     }
 
     public void drawSquare(){
+        clearCanvas();
         arrayAccessesText.setText("Array accesses: " + arrayAccesses.toString());
         int counter = 0;
         for (Integer number: listOfIntegers) {
@@ -104,7 +105,7 @@ public class MainView extends VBox {
     }
     public void setListOfIntegers(ArrayList<Integer> listOfInts){
         listOfIntegers = listOfInts;
-        clearCanvas();
+
         drawSquare();
     }
 
@@ -116,5 +117,14 @@ public class MainView extends VBox {
         return this.speed;
     }
 
+    public Boolean checkArray(ArrayList<Integer> a){
+        Integer lastNumber = 0;
+        for (Integer number: a) {
+            if(number <= lastNumber){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

@@ -46,7 +46,8 @@ public class QuickSort implements Runnable{
                 low++;
                 high--;
                 mainView.setListOfIntegers(a);
-                Thread.sleep(mainView.getSpeed());
+                int speed = mainView.getSpeed();
+                Thread.sleep(speed);
             }
 
         }

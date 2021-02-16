@@ -16,6 +16,11 @@ public class InsertSort implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        if(mainView.checkArray(mainView.getListOfIntegers())){
+            System.out.println("Sucess!");
+        }else{
+            System.out.println("Failure");
+        }
     }
 
 
@@ -32,7 +37,8 @@ public class InsertSort implements Runnable {
                 mainView.incArrayAccess(3);
                 counter -= 1;
                 mainView.setListOfIntegers(a);
-                Thread.sleep(mainView.getSpeed());
+                int speed = mainView.getSpeed();
+                Thread.sleep(speed);
 
             }
             a.set(counter+1, currentNumber);
@@ -40,6 +46,7 @@ public class InsertSort implements Runnable {
 
 
         }
+        mainView.setListOfIntegers(a);
     }
 
 }
